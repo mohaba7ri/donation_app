@@ -104,15 +104,48 @@ class AddNewConstructionDonation2DesktopScreen
                               ),
                             );
                           })
-                        : Row(
-                            children: _buildBenefandDurationForLargeScreen(),
+                        : Obx(
+                            () {
+                              return Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical:
+                                        8), // Add some margin to float the container
+                                padding: EdgeInsets.all(
+                                    16), // Add padding inside the container
+                                decoration: BoxDecoration(
+                                  color: Colors.white, // White background color
+                                  borderRadius: BorderRadius.circular(
+                                      12), // Rounded corners
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(
+                                          0.1), // Slight shadow color
+                                      spreadRadius: 2,
+                                      blurRadius: 6,
+                                      offset: Offset(0, 3), // Shadow position
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children:
+                                          _buildBenefandDurationForLargeScreen(),
+                                    ),
+                                    SizedBox(height: 20.0),
+                                    Row(
+                                      children:
+                                          _buildDetailsAndFacilitiesForLargeScreen(),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
                     // SizedBox(height: 20.0),
                     // isSmallScreen
-                    //     ? Column(
-                    //         children:
-                    //             _buildDetailsAndFacilitiesForSmallScreen(),
-                    //       )
+                    //     ? SizedBox()
                     //     : Row(
                     //         children:
                     //             _buildDetailsAndFacilitiesForLargeScreen(),
@@ -494,6 +527,10 @@ class AddNewConstructionDonation2DesktopScreen
           style: robotoButtonColor,
         ),
       ),
+      Divider(
+        color: AppColor.buttonColor,
+        height: 2,
+      ),
       ListTile(
         title: Text(
           "عدد المستفيدين",
@@ -503,6 +540,10 @@ class AddNewConstructionDonation2DesktopScreen
           '${controller.beneficiaries.value}',
           style: robotoButtonColor,
         ),
+      ),
+      Divider(
+        color: AppColor.buttonColor,
+        height: 2,
       ),
       ListTile(
         title: Text(
@@ -514,6 +555,10 @@ class AddNewConstructionDonation2DesktopScreen
           style: robotoButtonColor,
         ),
       ),
+      Divider(
+        color: AppColor.buttonColor,
+        height: 2,
+      ),
       ListTile(
         title: Text(
           "التكلفة خرسانة",
@@ -524,6 +569,10 @@ class AddNewConstructionDonation2DesktopScreen
           style: robotoButtonColor,
         ),
       ),
+      Divider(
+        color: AppColor.buttonColor,
+        height: 2,
+      ),
       ListTile(
         title: Text(
           "تفاصيل البناء",
@@ -533,6 +582,10 @@ class AddNewConstructionDonation2DesktopScreen
           '${controller.buildingDetails.value}',
           style: robotoButtonColor,
         ),
+      ),
+      Divider(
+        color: AppColor.buttonColor,
+        height: 2,
       ),
       ListTile(
         title: Text(
@@ -550,27 +603,66 @@ class AddNewConstructionDonation2DesktopScreen
   List<Widget> _buildBenefandDurationForLargeScreen() {
     return [
       Expanded(
-        child: Obx(() {
-          return Text(
-            '${controller.executionPeriodC.value}: مدة التنفيذ',
-            style: TextStyle(fontSize: 16),
-          );
-        }),
-        // Obx(() {
-        //   return CustomInput(
-        //     controller: controller.executionPeriodC.value,
-        //     label: "مدة التنفيذ".tr,
-        //     hint: "",
-        //     disabled: true,
-        //   );
-        // }),
+        child: ListTile(
+          title: Text(
+            "مدة التنفيذ",
+            style: robotoAppColor,
+          ),
+          subtitle: Text(
+            '${controller.executionPeriodC.value}',
+            style: robotoButtonColor,
+          ),
+        ),
       ),
-      SizedBox(width: 20.0),
+      Container(
+        height: 60,
+        width: 3,
+        color: AppColor.buttonColor,
+      ),
       Expanded(
-        child: CustomInput(
-          controller: controller.beneficiariesC,
-          label: "عدد المستفيدين".tr,
-          hint: "",
+        child: ListTile(
+          title: Text(
+            "عدد المستفيدين",
+            style: robotoAppColor,
+          ),
+          subtitle: Text(
+            '${controller.beneficiaries.value}',
+            style: robotoButtonColor,
+          ),
+        ),
+      ),
+      Container(
+        height: 60,
+        width: 3,
+        color: AppColor.buttonColor,
+      ),
+      Expanded(
+        child: ListTile(
+          title: Text(
+            "التكلفة زنك",
+            style: robotoAppColor,
+          ),
+          subtitle: Text(
+            '${controller.zincCost.value}',
+            style: robotoButtonColor,
+          ),
+        ),
+      ),
+      Container(
+        height: 60,
+        width: 3,
+        color: AppColor.buttonColor,
+      ),
+      Expanded(
+        child: ListTile(
+          title: Text(
+            "التكلفة خرسانة",
+            style: robotoAppColor,
+          ),
+          subtitle: Text(
+            '${controller.concreteCost.value}',
+            style: robotoButtonColor,
+          ),
         ),
       ),
     ];
@@ -579,23 +671,41 @@ class AddNewConstructionDonation2DesktopScreen
   List<Widget> _buildDetailsAndFacilitiesForLargeScreen() {
     return [
       Expanded(
-        child: TextFormField(
-          controller: controller.buildingDetailsC,
-          maxLines: null,
-          decoration: InputDecoration(
-            labelText: "تفاصيل البناء".tr,
-            border: OutlineInputBorder(),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+              border: Border.all(color: AppColor.buttonColor)),
+          child: ListTile(
+            title: Text(
+              "تفاصيل البناء",
+              style: robotoAppColor,
+            ),
+            subtitle: Text(
+              '${controller.buildingDetails.value}',
+              style: robotoButtonColor,
+            ),
           ),
         ),
       ),
-      SizedBox(width: 20.0),
+      SizedBox(
+        width: 5,
+      ),
       Expanded(
-        child: TextFormField(
-          controller: controller.facilitiesC,
-          maxLines: null,
-          decoration: InputDecoration(
-            labelText: "المرافق".tr,
-            border: OutlineInputBorder(),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+              border: Border.all(color: AppColor.buttonColor)),
+          child: ListTile(
+            title: Text(
+              "المرافق",
+              style: robotoAppColor,
+            ),
+            subtitle: Text(
+              '${controller.facilities.value}',
+              style: robotoButtonColor,
+            ),
           ),
         ),
       ),
