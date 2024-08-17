@@ -46,7 +46,7 @@ class ManageMosqProjectController extends GetxController {
   // String countryName = '';
   // String projectType = '';
 
-  void addOrUpdateProject(countryName, projectType) async {
+  void addOrUpdateProject() async {
     if (_isDuplicateArena()) {
       Get.snackbar(
         "",
@@ -80,6 +80,7 @@ class ManageMosqProjectController extends GetxController {
 
     try {
       if (selectedProjectId.value.isEmpty) {
+        print("oh my god");
         await _firestore
             .collection('projects')
             .doc('constructions') // Replace with the correct document ID

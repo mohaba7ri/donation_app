@@ -127,8 +127,7 @@ class ManageMosqProjectDesktopScreen
                                       controller.isLoadingEdit.value
                                   ? null
                                   : () {
-                                      // controller.addOrUpdateProject(
-                                      //     countryName, projectName);
+                                      controller.addOrUpdateProject();
                                     },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.blue,
