@@ -1,4 +1,5 @@
 import 'package:dontations_app/views/add_donation.dart';
+import 'package:dontations_app/views/desktop/donations/add_newConstructionDonation2_desktop.dart';
 import 'package:dontations_app/views/desktop/manageUser_desktop.dart';
 import 'package:dontations_app/views/desktop/donations/add_newConstructionDonation_desktop.dart';
 import 'package:dontations_app/views/desktop/add_constructionProject_desktop.dart';
@@ -29,7 +30,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADDNEWCONSTRUCTIONDONATIONSCREEN,
-      page: () => AddNewConstructionDonationDesktopScreen(),
+      page: () => AddNewConstructionDonation2DesktopScreen(),
     ),
     GetPage(
       name: _Paths.ADDOLDCONSTRUCTIONDONATIONSCREEN,

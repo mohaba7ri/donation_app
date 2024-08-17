@@ -79,6 +79,11 @@ class AddNewConstructionDonationController extends GetxController {
     if (querySnapshot.docs.isNotEmpty) {
       var doc = querySnapshot.docs.first; // Assuming you want the first match
       executionPeriodC.value = doc['executionPeriod'] as String? ?? '';
+      buildingDetails.value = doc['buildingDetails'] as String? ?? '';
+      beneficiaries.value = doc['beneficiaries'] as String? ?? '';
+      zincCost.value = doc['zincCost'] as String? ?? '';
+      concreteCost.value = doc['concreteCost'] as String? ?? '';
+      facilities.value = doc['facilities'] as String? ?? '';
     } else {
       executionPeriodC.value = ''; // No matching arena found
     }

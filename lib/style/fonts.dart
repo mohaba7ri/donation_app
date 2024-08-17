@@ -113,3 +113,15 @@ final backButton = IconButton(
       Icons.arrow_back_ios,
       color: AppColor.blackColor,
     ));
+
+final robotoAppColor = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
+    fontSize: Dimensions.fontSizeExtraLarge,
+    color: AppColor.appBarColor);
+
+final robotoButtonColor = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w700,
+    fontSize: Dimensions.fontSizeExtraLarge,
+    color: AppColor.buttonColor);
