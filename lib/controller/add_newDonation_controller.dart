@@ -60,59 +60,32 @@ class AddNewConstructionDonationController extends GetxController {
         .toList();
   }
 
-  void fetchProjectDetails() async {
+  void fetchExecutionPeriod() async {
     if (selectedArena.value.isEmpty) {
-      // Clear all values if no arena is selected
-      executionPeriod.value = '';
-      buildingDetails.value = '';
-      beneficiaries.value = '';
-      zincCost.value = '';
-      concreteCost.value = '';
-      facilities.value = '';
+      executionPeriodC.value =
+          ''; // Clear executionPeriod if no arena is selected
       return;
     }
 
-    try {
-      var querySnapshot = await _firestore
-          .collection('projects')
-          .doc("constructions")
-          .collection('Mosque')
-          .where('country', isEqualTo: 'اليمن')
-          .where('projectType', isEqualTo: 'الجامع الكبير')
-          .where('arena', isEqualTo: selectedArena.value)
-          .get();
+    var querySnapshot = await _firestore
+        .collection('projects')
+        .doc("constructions")
+        .collection('Mosque')
+        .where('country', isEqualTo: 'اليمن')
+        .where('projectType', isEqualTo: 'الجامع الكبير')
+        .where('arena', isEqualTo: selectedArena.value)
+        .get();
 
-      if (querySnapshot.docs.isNotEmpty) {
-        var doc = querySnapshot.docs.first; // Assuming you want the first match
-        executionPeriod.value = doc['executionPeriod'] as String? ?? '';
-        buildingDetails.value = doc['buildingDetails'] as String? ?? '';
-        beneficiaries.value = doc['beneficiaries'] as String? ?? '';
-        zincCost.value = doc['zincCost'] as String? ?? '';
-        concreteCost.value = doc['concreteCost'] as String? ?? '';
-        facilities.value = doc['facilities'] as String? ?? '';
-      } else {
-        // Clear all values if no matching arena is found
-        executionPeriod.value = '';
-        buildingDetails.value = '';
-        beneficiaries.value = '';
-        zincCost.value = '';
-        concreteCost.value = '';
-        facilities.value = '';
-      }
-    } catch (e) {
-      print('Error fetching project details: $e');
-      // Clear all values in case of an error
-      executionPeriod.value = '';
-      buildingDetails.value = '';
-      beneficiaries.value = '';
-      zincCost.value = '';
-      concreteCost.value = '';
-      facilities.value = '';
+    if (querySnapshot.docs.isNotEmpty) {
+      var doc = querySnapshot.docs.first; // Assuming you want the first match
+      executionPeriodC.value = doc['executionPeriod'] as String? ?? '';
+    } else {
+      executionPeriodC.value = ''; // No matching arena found
     }
   }
 
-  // var selectedArea = '90 متر '.obs;
-  // var areas = ['90 متر ', '100 متر ', '120 متر '];
+  var selectedArea = '90 متر '.obs;
+  var areas = ['90 متر ', '100 متر ', '120 متر '];
 
   final selectedPrimaryField = ''.obs;
   final selectedAmountRange = '2000 - 3000'.obs;

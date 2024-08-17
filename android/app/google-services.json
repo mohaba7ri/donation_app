@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "129380867499",
+    "firebase_url": "https://donations-app-9263e-default-rtdb.firebaseio.com",
+    "project_id": "donations-app-9263e",
+    "storage_bucket": "donations-app-9263e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129380867499:android:5a2e4f3ef2d4c6759cc6ee",
+        "android_client_info": {
+          "package_name": "com.example.dontations_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9B3YtkSpEPr-oEU83UP5G9GF2ey4Vjsk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

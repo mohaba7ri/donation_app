@@ -813,7 +813,7 @@ class AddNewConstructionDonationDesktopScreen
             }).toList(),
             onChanged: (newValue) {
               controller.selectedArena.value = newValue!;
-              controller.fetchProjectDetails();
+              controller.fetchExecutionPeriod();
             },
             decoration: InputDecoration(
               labelText: "المساحة".tr,
