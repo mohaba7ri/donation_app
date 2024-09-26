@@ -1,4 +1,4 @@
-import 'package:dontations_app/controller/add_newDonation_controller.dart';
+import 'package:dontations_app/controller/add_wellDonation_controller.dart';
 import 'package:dontations_app/style/app_color.dart';
 import 'package:dontations_app/style/fonts.dart';
 import 'package:dontations_app/widgets/custom_input.dart';
@@ -9,10 +9,8 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
-class AddNewConstructionDonation2DesktopScreen
-    extends GetView<AddNewConstructionDonationController> {
-  final String projectName = Get.arguments;
-
+class AddWellDonationDesktopScreen extends GetView<AddWellDonationController> {
+  // final String projectName = Get.arguments;
   @override
   Widget build(BuildContext context) {
     // Get the screen size
@@ -24,7 +22,7 @@ class AddNewConstructionDonation2DesktopScreen
         backgroundColor: AppColor.appBarColor,
         iconTheme: IconThemeData(color: AppColor.whiteColor),
         title: Text(
-          "إضافة تبرع ($projectName)".tr,
+          "إضافة تبرع ${controller.countryName}".tr,
           style: robotoHugeWhite,
         ),
         centerTitle: true,
@@ -48,6 +46,12 @@ class AddNewConstructionDonation2DesktopScreen
                       "بيانات التبرع".tr,
                       style: robotoHugeBlack,
                     ),
+                    CustomInput(
+                      controller: controller.projectNameC,
+                      label: "إسم المشروع".tr,
+                      hint: "",
+                    ),
+
                     SizedBox(height: 20.0),
                     isSmallScreen
                         ? Column(
@@ -57,16 +61,7 @@ class AddNewConstructionDonation2DesktopScreen
                             children: _buildResponsiveInputsForLargeScreen(),
                           ),
                     SizedBox(height: 20.0),
-                    isSmallScreen
-                        ? Column(
-                            children:
-                                _buildResponsiveTextFieldsForSmallScreen(),
-                          )
-                        : Row(
-                            children:
-                                _buildResponsiveTextFieldsForLargeScreen(),
-                          ),
-                    SizedBox(height: 20.0),
+
                     isSmallScreen
                         ? Column(
                             children: _buildResponsiveDropdownsForSmallScreen(),
@@ -264,9 +259,11 @@ class AddNewConstructionDonation2DesktopScreen
   List<Widget> _buildResponsiveDropdownsForSmallScreen() {
     return [
       CustomInput(
-        controller: controller.buildingDetailsC,
+        controller: controller.donationAmountC,
         label: "مبلغ التبرع".tr,
         hint: "",
+        keyboardType: TextInputType.number,
+        disabled: true,
       ),
       SizedBox(height: 20.0),
       Obx(() {
@@ -286,7 +283,7 @@ class AddNewConstructionDonation2DesktopScreen
             controller.fetchExecutionPeriod();
           },
           decoration: InputDecoration(
-            labelText: "المساحة".tr,
+            labelText: "العمق".tr,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12.0),
             ),
@@ -294,47 +291,28 @@ class AddNewConstructionDonation2DesktopScreen
         );
       }),
       SizedBox(height: 20.0),
-      DropdownButtonFormField<String>(
-        value: controller.selectedAmountRange.value.isNotEmpty
-            ? controller.selectedAmountRange.value
-            : controller.amountRanges.first,
-        items: controller.amountRanges.map((range) {
-          return DropdownMenuItem(
-            value: range,
-            child: Text(range),
-          );
-        }).toList(),
-        onChanged: (value) {
-          controller.selectedAmountRange.value = value!;
-        },
-        decoration: InputDecoration(
-          labelText: "مدى المبلغ".tr,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-        ),
-      ),
-      SizedBox(height: 20.0),
-      DropdownButtonFormField<String>(
-        value: controller.selectedAgent.value.isNotEmpty
-            ? controller.selectedAgent.value
-            : controller.agents.first,
-        items: controller.agents.map((range) {
-          return DropdownMenuItem(
-            value: range,
-            child: Text(range),
-          );
-        }).toList(),
-        onChanged: (value) {
-          controller.selectedAgent.value = value!;
-        },
-        decoration: InputDecoration(
-          labelText: "الجهة المنفذة".tr,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-        ),
-      ),
+      // Obx(
+      //   () => DropdownButtonFormField<String>(
+      //     value: controller.selectedAgent.value.isNotEmpty
+      //         ? controller.selectedAgent.value
+      //         : null, // Set the initial value to null to avoid pre-selecting
+      //     items: controller.agents.map((agent) {
+      //       return DropdownMenuItem(
+      //         value: agent,
+      //         child: Text(agent),
+      //       );
+      //     }).toList(),
+      //     onChanged: (value) {
+      //       controller.selectedAgent.value = value!;
+      //     },
+      //     decoration: InputDecoration(
+      //       labelText: "الجهة المنفذة".tr,
+      //       border: OutlineInputBorder(
+      //         borderRadius: BorderRadius.circular(12.0),
+      //       ),
+      //     ),
+      //   ),
+      // )
     ];
   }
 
@@ -342,9 +320,11 @@ class AddNewConstructionDonation2DesktopScreen
     return [
       Expanded(
         child: CustomInput(
-          controller: controller.buildingDetailsC,
+          controller: controller.donationAmountC,
           label: "مبلغ التبرع".tr,
           hint: "",
+          keyboardType: TextInputType.number,
+          disabled: true,
         ),
       ),
       SizedBox(width: 15.0),
@@ -366,7 +346,7 @@ class AddNewConstructionDonation2DesktopScreen
               controller.fetchExecutionPeriod();
             },
             decoration: InputDecoration(
-              labelText: "المساحة".tr,
+              labelText: "العمق".tr,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12.0),
               ),
@@ -375,143 +355,29 @@ class AddNewConstructionDonation2DesktopScreen
         }),
       ),
       SizedBox(width: 15.0),
-      Expanded(
-        child: DropdownButtonFormField<String>(
-          value: controller.selectedAmountRange.value.isNotEmpty
-              ? controller.selectedAmountRange.value
-              : controller.amountRanges.first,
-          items: controller.amountRanges.map((range) {
-            return DropdownMenuItem(
-              value: range,
-              child: Text(range),
-            );
-          }).toList(),
-          onChanged: (value) {
-            controller.selectedAmountRange.value = value!;
-          },
-          decoration: InputDecoration(
-            labelText: "مدى المبلغ".tr,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-        ),
-      ),
-      SizedBox(width: 15.0),
-      Expanded(
-        child: DropdownButtonFormField<String>(
-          value: controller.selectedAgent.value.isNotEmpty
-              ? controller.selectedAgent.value
-              : controller.agents.first,
-          items: controller.agents.map((range) {
-            return DropdownMenuItem(
-              value: range,
-              child: Text(range),
-            );
-          }).toList(),
-          onChanged: (value) {
-            controller.selectedAgent.value = value!;
-          },
-          decoration: InputDecoration(
-            labelText: "الجهة المنفذة".tr,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-        ),
-      )
-    ];
-  }
-
-  List<Widget> _buildResponsiveTextFieldsForSmallScreen() {
-    return [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "حدد معيار التصفية الرئيسي".tr,
-            style: TextStyle(fontSize: 16.0),
-          ),
-          Obx(
-            () => Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.center, // Centering the row contents
-              children: [
-                Row(
-                  children: [
-                    Radio<int>(
-                      value: 0,
-                      groupValue: controller.primaryFilter.value,
-                      onChanged: (value) {
-                        controller.primaryFilter.value = value!;
-                      },
-                    ),
-                    Text("المساحة".tr),
-                  ],
-                ),
-                SizedBox(width: 20.0), // Space between the two options
-                Row(
-                  children: [
-                    Radio<int>(
-                      value: 1,
-                      groupValue: controller.primaryFilter.value,
-                      onChanged: (value) {
-                        controller.primaryFilter.value = value!;
-                      },
-                    ),
-                    Text("مدى المبلغ".tr),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ];
-  }
-
-  List<Widget> _buildResponsiveTextFieldsForLargeScreen() {
-    return [
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "حدد معيار التصفية الرئيسي".tr,
-            style: TextStyle(fontSize: 16.0),
-          ),
-          Obx(
-            () => Row(
-              children: [
-                Row(
-                  children: [
-                    Radio<int>(
-                      value: 0,
-                      groupValue: controller.primaryFilter.value,
-                      onChanged: (value) {
-                        controller.primaryFilter.value = value!;
-                      },
-                    ),
-                    Text("المساحة".tr),
-                  ],
-                ),
-                SizedBox(width: 20.0), // Space between the two options
-                Row(
-                  children: [
-                    Radio<int>(
-                      value: 1,
-                      groupValue: controller.primaryFilter.value,
-                      onChanged: (value) {
-                        controller.primaryFilter.value = value!;
-                      },
-                    ),
-                    Text("مدى المبلغ".tr),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      // Expanded(
+      //     child: Obx(
+      //   () => DropdownButtonFormField<String>(
+      //     value: controller.selectedAgent.value.isNotEmpty
+      //         ? controller.selectedAgent.value
+      //         : null, // Set the initial value to null to avoid pre-selecting
+      //     items: controller.agents.map((agent) {
+      //       return DropdownMenuItem(
+      //         value: agent,
+      //         child: Text(agent),
+      //       );
+      //     }).toList(),
+      //     onChanged: (value) {
+      //       controller.selectedAgent.value = value!;
+      //     },
+      //     decoration: InputDecoration(
+      //       labelText: "الجهة المنفذة".tr,
+      //       border: OutlineInputBorder(
+      //         borderRadius: BorderRadius.circular(12.0),
+      //       ),
+      //     ),
+      //   ),
+      // ))
     ];
   }
 
@@ -547,11 +413,11 @@ class AddNewConstructionDonation2DesktopScreen
       ),
       ListTile(
         title: Text(
-          "التكلفة زنك",
+          "التكلفة",
           style: robotoAppColor,
         ),
         subtitle: Text(
-          '${controller.zincCost.value}',
+          '${controller.cost.value}',
           style: robotoButtonColor,
         ),
       ),
@@ -561,21 +427,7 @@ class AddNewConstructionDonation2DesktopScreen
       ),
       ListTile(
         title: Text(
-          "التكلفة خرسانة",
-          style: robotoAppColor,
-        ),
-        subtitle: Text(
-          '${controller.concreteCost.value}',
-          style: robotoButtonColor,
-        ),
-      ),
-      Divider(
-        color: AppColor.buttonColor,
-        height: 2,
-      ),
-      ListTile(
-        title: Text(
-          "تفاصيل البناء",
+          "مواصفات البئر",
           style: robotoAppColor,
         ),
         subtitle: Text(
@@ -589,7 +441,7 @@ class AddNewConstructionDonation2DesktopScreen
       ),
       ListTile(
         title: Text(
-          "المرافق",
+          "مرافق البئر",
           style: robotoAppColor,
         ),
         subtitle: Text(
@@ -639,28 +491,11 @@ class AddNewConstructionDonation2DesktopScreen
       Expanded(
         child: ListTile(
           title: Text(
-            "التكلفة زنك",
+            "التكلفة",
             style: robotoAppColor,
           ),
           subtitle: Text(
-            '${controller.zincCost.value}',
-            style: robotoButtonColor,
-          ),
-        ),
-      ),
-      Container(
-        height: 60,
-        width: 3,
-        color: AppColor.buttonColor,
-      ),
-      Expanded(
-        child: ListTile(
-          title: Text(
-            "التكلفة خرسانة",
-            style: robotoAppColor,
-          ),
-          subtitle: Text(
-            '${controller.concreteCost.value}',
+            '${controller.cost.value}',
             style: robotoButtonColor,
           ),
         ),
@@ -677,7 +512,7 @@ class AddNewConstructionDonation2DesktopScreen
               border: Border.all(color: AppColor.buttonColor)),
           child: ListTile(
             title: Text(
-              "تفاصيل البناء",
+              "مواصفات البئر",
               style: robotoAppColor,
             ),
             subtitle: Text(
@@ -699,7 +534,7 @@ class AddNewConstructionDonation2DesktopScreen
               border: Border.all(color: AppColor.buttonColor)),
           child: ListTile(
             title: Text(
-              "المرافق",
+              "مرافق البئر",
               style: robotoAppColor,
             ),
             subtitle: Text(
@@ -707,28 +542,6 @@ class AddNewConstructionDonation2DesktopScreen
               style: robotoButtonColor,
             ),
           ),
-        ),
-      ),
-    ];
-  }
-
-  List<Widget> _buildDetailsAndFacilitiesForSmallScreen() {
-    return [
-      TextFormField(
-        controller: controller.buildingDetailsC,
-        maxLines: null,
-        decoration: InputDecoration(
-          labelText: "تفاصيل البناء".tr,
-          border: OutlineInputBorder(),
-        ),
-      ),
-      SizedBox(height: 20.0),
-      TextFormField(
-        controller: controller.facilitiesC,
-        maxLines: null,
-        decoration: InputDecoration(
-          labelText: "المرافق".tr,
-          border: OutlineInputBorder(),
         ),
       ),
     ];

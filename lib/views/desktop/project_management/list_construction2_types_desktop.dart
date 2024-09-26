@@ -1,4 +1,4 @@
-import 'package:dontations_app/controller/add_newDonation_controller.dart';
+import 'package:dontations_app/controller/add_musqeDonation_controller.dart';
 import 'package:dontations_app/controller/add_constructionProject_controller.dart';
 import 'package:dontations_app/controller/donations_desktop_controller.dart';
 import 'package:dontations_app/controller/list_constructionTypes_controller.dart';
@@ -63,7 +63,7 @@ class ListConstructionTypes2DesktopScreen
                         controller.abaarDonations,
                         (donation) {
                           Get.toNamed(
-                            Routes.LISTCONSTRUCTIONPROJECTSDESKTOPSCREEN,
+                            Routes.MANAGEWELLPROJECTSSCREEN,
                             arguments: {
                               'countryName': countryName,
                               'projectName': donation['projectName'],

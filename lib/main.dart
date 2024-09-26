@@ -5,6 +5,7 @@ import 'helper/git_di.dart' as di;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,7 @@ void main() async {
     );
   } catch (e) {}
   await di.init();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -36,9 +38,9 @@ class MyApp extends StatelessWidget {
 
     if (isFirstTime) {
       await prefs.setBool('isFirstTime', false);
-      return Routes.HOMEDESKTOPSCREEN;
+      return Routes.LOGIN;
     } else {
-      return Routes.HOMEDESKTOPSCREEN;
+      return Routes.LOGIN;
     }
   }
 

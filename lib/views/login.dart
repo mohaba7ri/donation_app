@@ -1,179 +1,174 @@
 import 'package:dontations_app/controller/login_controller.dart';
-import 'package:dontations_app/routes/app_pages.dart';
 import 'package:dontations_app/style/app_color.dart';
 import 'package:dontations_app/style/fonts.dart';
 import 'package:dontations_app/style/images.dart';
-import 'package:dontations_app/widgets/custom_input.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginScreen extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                child: Image.asset(Images.logo),
-              ),
-              Center(
-                child: Text("تسجيل الدخول".tr,
-                    style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  child: ListTile(
-                    tileColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(22.0),
-                    ),
-                    contentPadding: EdgeInsets.all(12.0),
-                    subtitle: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          CustomInput(
-                            controller: controller.emailC,
-                            label: "الايميل",
-                            hint: "",
-                          ),
-                          CustomInput(
-                            controller: controller.passC,
-                            label: 'كلمة المرور',
-                            hint: '',
-                            obscureText: true,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  controller.login();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColor.blackColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 10),
-                                ),
-                                child: Text(
-                                  "تسجيل".tr,
-                                  style: robotoHugeWhite,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Get.toNamed(Routes.ADMINHOMESCREEN);
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColor.blackColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 10),
-                                ),
-                                child: Text(
-                                  "مدير".tr,
-                                  style: robotoHugeWhite,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  controller.goToSignUp();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: AppColor.blackColor,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 10),
-                                ),
-                                child: Text(
-                                  "لا تمتلك حساب؟ إنشاء حساب",
-                                  style: robotoHugeWhite,
-                                ),
-                              ),
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (!controller.isLoading.value) {
-                                controller.signUpWithPhoneAndPassword(
-                                  phoneNumber: '7300150012',
-                                  password: '123456',
-                                );
-                              }
-                            },
-                            child: Obx(() => controller.isLoading.value
-                                ? CircularProgressIndicator(color: Colors.white)
-                                : Text("Sign Up")),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColor.buttonColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 80, vertical: 15),
-                            ),
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.FORGETPASSWORDSCREEN);
-                              },
-                              child: Text(
-                                "هل نسيت كلمة المرور؟",
-                                style: robotoMediumBold,
-                              )),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (!controller.isLoading.value) {
-                                controller.loginWithPhoneAndPassword(
-                                  phoneNumber: '730010012',
-                                  password: 'yourpassword',
-                                );
-                              }
-                            },
-                            child: Obx(() => controller.isLoading.value
-                                ? CircularProgressIndicator(color: Colors.white)
-                                : Text("Login")),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppColor.buttonColor,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 80, vertical: 15),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+    final isMobile = MediaQuery.of(context).size.width < 600;
+
+    return Scaffold(
+      body: Center(
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Container(
+            width: isMobile ? double.infinity : 800,
+            height: isMobile ? double.infinity : 500,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: Offset(0, 4),
                 ),
-              ),
-            ],
+              ],
+            ),
+            child: isMobile
+                ? _buildMobileView(context)
+                : _buildDesktopView(context),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildDesktopView(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(16.0),
+                bottomLeft: Radius.circular(16.0),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(Images.logo,
+                      height: 300), // قم بتعديل مسار الشعار
+                ],
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(40.0),
+            child: _buildLoginForm(context),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildMobileView(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Image.asset(Images.logo, height: 200), // قم بتعديل مسار الشعار
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: _buildLoginForm(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLoginForm(BuildContext context) {
+    return Form(
+      key: controller.formKey, // هنا يتم استخدام formKey من LoginController
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "تسجيل الدخول",
+            style: robotoAppColor,
+          ),
+          SizedBox(height: 20),
+          TextFormField(
+            controller: controller.emailC,
+            textDirection: TextDirection.rtl,
+            decoration: InputDecoration(
+              labelText: 'رقم الهاتف',
+              prefixIcon: Icon(Icons.phone),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'الرجاء إدخال  رقم الهاتف';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 20),
+          TextFormField(
+            controller: controller.passC,
+            textDirection: TextDirection.rtl,
+            obscureText: true,
+            decoration: InputDecoration(
+              labelText: 'كلمة المرور',
+              prefixIcon: Icon(Icons.lock),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              suffixIcon: Icon(Icons.visibility),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'الرجاء إدخال كلمة المرور';
+              }
+              return null;
+            },
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              if (controller.formKey.currentState!.validate()) {
+                controller.loginWithPhoneAndPassword(
+                  phoneNumber: controller.emailC.text,
+                  password: controller.passC.text,
+                );
+              }
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.login, color: Colors.white),
+                SizedBox(width: 10),
+                Text('تسجيل الدخول', style: TextStyle(color: Colors.white)),
+              ],
+            ),
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(double.infinity, 50),
+              backgroundColor:
+                  AppColor.buttonColor, // تغيير لون الزر حسب التصميم المطلوب
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

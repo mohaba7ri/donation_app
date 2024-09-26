@@ -12,6 +12,10 @@ class ListConstructionTypesController extends GetxController {
     super.onInit();
     fetchDonations();
     categorizeDonations();
+
+    // args = Get.arguments;
+    // countryName = args['countryName'] as String;
+    // projectType = args['projectType'] as String;
   }
 
   // Method to fetch donations

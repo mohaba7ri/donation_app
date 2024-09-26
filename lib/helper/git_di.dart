@@ -1,5 +1,8 @@
-import 'package:dontations_app/controller/add_newDonation_controller.dart';
+import 'package:dontations_app/controller/add_musqeDonation_controller.dart';
 import 'package:dontations_app/controller/add_constructionProject_controller.dart';
+import 'package:dontations_app/controller/add_wellDonation_controller.dart';
+import 'package:dontations_app/controller/closest_cost_controller.dart';
+import 'package:dontations_app/controller/listDonations_controller.dart';
 import 'package:dontations_app/controller/manage_mosqProject_controller.dart';
 import 'package:dontations_app/controller/contries_controller.dart';
 import 'package:dontations_app/controller/donation_details_controller.dart';
@@ -15,6 +18,7 @@ import 'package:dontations_app/controller/login_controller.dart';
 import 'package:dontations_app/controller/managePlans_controller.dart';
 import 'package:dontations_app/controller/manageSentences_controller.dart';
 import 'package:dontations_app/controller/manageUser_controller.dart';
+import 'package:dontations_app/controller/manage_wellProject_controller.dart';
 import 'package:dontations_app/views/desktop/manageUser_desktop.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +34,7 @@ Future init() async {
   Get.lazyPut(() => ManageSentencesController(), fenix: true);
   Get.lazyPut(() => ManagePlansController(), fenix: true);
   Get.lazyPut(() => ForgetPasswordController(), fenix: true);
-  Get.lazyPut(() => AddNewConstructionDonationController(), fenix: true);
+  Get.lazyPut(() => AddMusqeDonationController(), fenix: true);
   Get.lazyPut(() => AddConstructionProjectController(), fenix: true);
   Get.lazyPut(() => DonationsListController(), fenix: true);
   Get.lazyPut(() => DonationDetailsController(), fenix: true);
@@ -42,4 +46,9 @@ Future init() async {
   Get.lazyPut(() => ManageMosqProjectController(), fenix: true);
   Get.lazyPut(() => ListConstructionProjectsController(), fenix: true);
   Get.lazyPut(() => ManageUserController(), fenix: true);
+
+  Get.lazyPut(() => AddWellDonationController(), fenix: true);
+  Get.lazyPut(() => ManageWellProjectController(), fenix: true);
+  Get.lazyPut(() => ClosestCostController(), fenix: true);
+  Get.lazyPut(() => ListDonationsController(), fenix: true);
 }

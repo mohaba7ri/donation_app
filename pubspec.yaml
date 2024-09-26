@@ -47,6 +47,13 @@ dependencies:
   cloud_firestore: ^5.2.1
   firebase_auth: ^5.1.4
   firebase_database: ^11.0.4
+  pdf: ^3.11.1
+  path_provider: ^2.1.4
+  panara_dialogs: ^0.1.5
+  printing: ^5.12.0
+  get_storage: ^2.1.1
+  universal_html: ^2.2.4
+  excel: ^4.0.6
 
 dev_dependencies:
   flutter_test:
@@ -75,6 +82,12 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/
+    - assets/Cairo-Bold.ttf
+    - assets/Alarabiya_Normal_Font.ttf
+    - assets/logo.png
+    - assets/slogan.png
+    - assets/accounts.png
+    - assets/signature.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

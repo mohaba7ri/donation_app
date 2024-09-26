@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart'; // Import the crypto package for hashing
+import 'package:dontations_app/widgets/custom_toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,9 +40,16 @@ class ManageUserController extends GetxController {
     super.onClose();
   }
 
+  // Function to hash the password using SHA-256
+  String hashPassword(String password) {
+    var bytes = utf8.encode(password);
+    var digest = sha256.convert(bytes);
+    return digest.toString();
+  }
+
   Future<void> signUpWithPhoneAndPassword() async {
     if (selectedRole.value.isEmpty) {
-      Get.snackbar('خطأ', 'الرجاء اختيار دور المستخدم.');
+      CustomToast.errorToast('الرجاء اختيار دور المستخدم.');
       return;
     }
 
@@ -53,10 +63,13 @@ class ManageUserController extends GetxController {
           .get();
 
       if (existingUser.docs.isNotEmpty) {
-        Get.snackbar('خطأ', 'رقم الهاتف مسجل مسبقًا.');
+        CustomToast.errorToast('رقم الهاتف مسجل مسبقًا.');
         isLoading.value = false;
         return;
       }
+
+      // Hash the password before storing it
+      String hashedPassword = hashPassword(passC.text);
 
       // Create user with anonymous authentication (or another method)
       UserCredential userCredential =
@@ -73,20 +86,20 @@ class ManageUserController extends GetxController {
         await _firestore.collection('users').doc(user.uid).set({
           'name': NameC.text,
           'phone': phoneC.text,
-          'password': passC.text, // Consider hashing the password
+          'password': hashedPassword, // Store hashed password
           'entryDate': formattedDate,
           'userId': user.uid,
           'role': selectedRole.value,
         });
 
-        Get.snackbar('نجاح', 'تم إنشاء المستخدم بنجاح.');
+        CustomToast.successToast('تم إنشاء المستخدم بنجاح.');
         fetchUsers(); // Refresh the user list after adding a new user
       }
 
       isLoading.value = false;
     } catch (e) {
       isLoading.value = false;
-      Get.snackbar('خطأ', 'فشل في التسجيل: ${e.toString()}');
+      CustomToast.errorToast('فشل في التسجيل: ${e.toString()}');
     }
   }
 
@@ -100,7 +113,7 @@ class ManageUserController extends GetxController {
       isLoading.value = false;
     } catch (e) {
       isLoading.value = false;
-      Get.snackbar('خطأ', 'فشل في جلب المستخدمين: ${e.toString()}');
+      CustomToast.errorToast('فشل في جلب المستخدمين: ${e.toString()}');
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'package:dontations_app/controller/add_newDonation_controller.dart';
+import 'package:dontations_app/controller/add_musqeDonation_controller.dart';
 import 'package:dontations_app/controller/manage_mosqProject_controller.dart';
 import 'package:dontations_app/style/app_color.dart';
 import 'package:dontations_app/style/fonts.dart';
@@ -185,27 +185,47 @@ class ManageMosqProjectDesktopScreen
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: controller.projects.map((project) {
-                          return ListTile(
-                            title: Text(
-                                "${project['projectType']} - ${project['arena']} متر"),
-                            subtitle: Text(
-                                "عدد المستفيدين :  ${project['beneficiaries']} - التكلفة زنك :${project['zincCost']} - التكلفة خرسانة :${project['concreteCost']} - مدة التنفيذ : ${project['executionPeriod']}"),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.edit),
-                                  onPressed: () {
-                                    controller.selectProject(project);
-                                  },
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () {
-                                    controller.deleteProject(project['id']);
-                                  },
+                          return Container(
+                            margin: EdgeInsets.symmetric(
+                                vertical: 8,
+                                horizontal: 16), // Adjust margins as needed
+                            decoration: BoxDecoration(
+                              color: Colors
+                                  .white, // Background color of the container
+                              borderRadius:
+                                  BorderRadius.circular(12), // Rounded corners
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black
+                                      .withOpacity(0.1), // Shadow color
+                                  spreadRadius: 2,
+                                  blurRadius: 8, // Blur radius for the shadow
+                                  offset: Offset(0, 4), // Shadow position
                                 ),
                               ],
+                            ),
+                            child: ListTile(
+                              title: Text(
+                                  "${project['projectType']} - ${project['arena']} متر"),
+                              subtitle: Text(
+                                  "عدد المستفيدين :  ${project['beneficiaries']} - التكلفة زنك :${project['zincCost']} - التكلفة خرسانة :${project['concreteCost']} - مدة التنفيذ : ${project['executionPeriod']}"),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.edit),
+                                    onPressed: () {
+                                      controller.selectProject(project);
+                                    },
+                                  ),
+                                  IconButton(
+                                    icon: Icon(Icons.delete),
+                                    onPressed: () {
+                                      controller.deleteProject(project['id']);
+                                    },
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         }).toList(),

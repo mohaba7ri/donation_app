@@ -12,34 +12,34 @@ class ListProjectTypesController extends GetxController {
 
   void fetchDonations() {
     donations.value = [
-      {
-        'projectName': 'زكاة',
-        'icon': Icons.monetization_on, // Example icon
-      },
-      {
-        'projectName': 'صدقات عامة',
-        'icon': Icons.volunteer_activism, // Example icon
-      },
-      {
-        'projectName': 'وقفيات',
-        'icon': Icons.build, // Example icon
-      },
-      {
-        'projectName': 'كفارات',
-        'icon': Icons.support_agent, // Example icon
-      },
-      {
-        'projectName': 'كفالات',
-        'icon': Icons.handshake, // Example icon
-      },
-      {
-        'projectName': 'إغاثة',
-        'icon': Icons.local_hospital, // Example icon
-      },
-      {
-        'projectName': 'مشاريع دعوية',
-        'icon': Icons.school, // Example icon
-      },
+      // {
+      //   'projectName': 'زكاة',
+      //   'icon': Icons.monetization_on, // Example icon
+      // },
+      // {
+      //   'projectName': 'صدقات عامة',
+      //   'icon': Icons.volunteer_activism, // Example icon
+      // },
+      // {
+      //   'projectName': 'وقفيات',
+      //   'icon': Icons.build, // Example icon
+      // },
+      // {
+      //   'projectName': 'كفارات',
+      //   'icon': Icons.support_agent, // Example icon
+      // },
+      // {
+      //   'projectName': 'كفالات',
+      //   'icon': Icons.handshake, // Example icon
+      // },
+      // {
+      //   'projectName': 'إغاثة',
+      //   'icon': Icons.local_hospital, // Example icon
+      // },
+      // {
+      //   'projectName': 'مشاريع دعوية',
+      //   'icon': Icons.school, // Example icon
+      // },
       {
         'projectName': 'مشاريع إنشائية',
         'icon': Icons.construction, // Example icon

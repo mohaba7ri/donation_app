@@ -1,4 +1,4 @@
-import 'package:dontations_app/controller/add_newDonation_controller.dart';
+import 'package:dontations_app/controller/add_musqeDonation_controller.dart';
 import 'package:dontations_app/controller/add_constructionProject_controller.dart';
 import 'package:dontations_app/controller/donations_desktop_controller.dart';
 import 'package:dontations_app/controller/list_projects_types_controller.dart';
@@ -12,6 +12,8 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class ListProjectTypesDesktopScreen
     extends GetView<ListProjectTypesController> {
+  final String countryName = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +74,8 @@ class ListProjectTypesDesktopScreen
                                 onTap: () {
                                   Get.toNamed(
                                     Routes.LISTCONSTRUCTIONTYPESSCREEN,
-                                    arguments: donation[
-                                        'projectName'], // Passing the project name
+                                    arguments:
+                                        countryName, // Passing the project name
                                   );
                                 },
                               ),

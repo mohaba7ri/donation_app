@@ -1,5 +1,12 @@
+import 'package:dontations_app/controller/add_wellDonation_controller.dart';
 import 'package:dontations_app/views/add_donation.dart';
-import 'package:dontations_app/views/desktop/donations/add_newConstructionDonation2_desktop.dart';
+import 'package:dontations_app/views/desktop/accountant/accountHomeScreen.dart';
+import 'package:dontations_app/views/desktop/accountant/listDonationsForAccount.dart';
+import 'package:dontations_app/views/desktop/donations/views/add_musqeDonation2_desktop.dart';
+import 'package:dontations_app/views/desktop/donations/views/add_wellDonation_desktop.dart';
+import 'package:dontations_app/views/desktop/donations/views/listDonations_screen.dart';
+import 'package:dontations_app/views/desktop/donations/views/manageDonations_screen.dart';
+import 'package:dontations_app/views/desktop/donations/views/print_test_screen.dart';
 import 'package:dontations_app/views/desktop/manageUser_desktop.dart';
 import 'package:dontations_app/views/desktop/donations/add_newConstructionDonation_desktop.dart';
 import 'package:dontations_app/views/desktop/add_constructionProject_desktop.dart';
@@ -9,12 +16,14 @@ import 'package:dontations_app/views/desktop/donation_details_desktop.dart';
 import 'package:dontations_app/views/desktop/donations_desktop.dart';
 import 'package:dontations_app/views/desktop/home_desktop.dart';
 import 'package:dontations_app/views/desktop/list_constructionProjects_desktop.dart';
-import 'package:dontations_app/views/desktop/list_construction_types_desktop.dart';
+import 'package:dontations_app/views/desktop/donations/list_construction_types_desktop.dart';
 import 'package:dontations_app/views/desktop/list_countries_desktop.dart';
-import 'package:dontations_app/views/desktop/list_project_types_desktop.dart';
+import 'package:dontations_app/views/desktop/donations/list_project_types_desktop.dart';
 import 'package:dontations_app/views/desktop/list_projects_subTypes_desktop.dart';
 import 'package:dontations_app/views/desktop/project_management/list_construction2_types_desktop.dart';
 import 'package:dontations_app/views/desktop/project_management/manage_mosq_projects.dart';
+import 'package:dontations_app/views/desktop/project_management/manage_well_projects.dart';
+import 'package:dontations_app/views/desktop/reception/receptionHomeScreen.dart';
 import 'package:dontations_app/views/login.dart';
 import 'package:get/get.dart';
 
@@ -90,6 +99,30 @@ class AppPages {
       name: _Paths.MANAGEMOSQPROJECTSCREEN,
       page: () => ManageMosqProjectDesktopScreen(),
     ),
+
+    GetPage(
+      name: _Paths.ADDWELLDONATIONSCREEN,
+      page: () => AddWellDonationDesktopScreen(),
+    ),
+    GetPage(
+      name: _Paths.MANAGEWELLPROJECTSSCREEN,
+      page: () => ManageWellProjectDesktopScreen(),
+    ),
+    GetPage(
+        name: _Paths.LISTDONATIONSSCREEN, page: () => ListDonationsScreen()),
+
+    GetPage(
+        name: _Paths.DONATIONSMANAGESCREEN,
+        page: () => DonationManagementScreen()),
+    GetPage(
+        name: _Paths.ACCOUNTANT_HOMESCREEN,
+        page: () => ListDonationsForAccountScreen()),
+    GetPage(
+        name: _Paths.RECEPTION_HOMESCREEN, page: () => ReceptionHomeScreen()),
+    // GetPage(
+    //   name: _Paths.PRINTTEST,
+    //   page: () => PdfReportPage(),
+    // ),
     // GetPage(
     //   name: _Paths.SIGNUPSCREEN,
     //   page: () => SignUpScreen(),

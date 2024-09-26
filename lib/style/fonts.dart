@@ -116,12 +116,18 @@ final backButton = IconButton(
 
 final robotoAppColor = TextStyle(
     fontFamily: 'Roboto',
-    fontWeight: FontWeight.w700,
-    fontSize: Dimensions.fontSizeExtraLarge,
+    fontWeight: FontWeight.w400,
+    fontSize: Dimensions.fontSizeLarge,
     color: AppColor.appBarColor);
 
 final robotoButtonColor = TextStyle(
     fontFamily: 'Roboto',
-    fontWeight: FontWeight.w700,
-    fontSize: Dimensions.fontSizeExtraLarge,
+    fontWeight: FontWeight.w400,
+    fontSize: Dimensions.fontSizeLarge,
+    color: AppColor.buttonColor);
+
+final robotoButtonColorDefault = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+    fontSize: 18,
     color: AppColor.buttonColor);

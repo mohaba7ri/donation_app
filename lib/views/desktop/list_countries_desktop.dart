@@ -2,6 +2,7 @@ import 'package:dontations_app/controller/contries_controller.dart';
 import 'package:dontations_app/routes/app_pages.dart';
 import 'package:dontations_app/style/app_color.dart';
 import 'package:dontations_app/style/fonts.dart';
+import 'package:dontations_app/views/desktop/donations/views/suggest_project_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,6 +18,25 @@ class ListCountriesDesktopScreen extends GetView<CountriesController> {
         ),
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColor.buttonColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            ),
+            onPressed: () {
+              Get.to(() => SuggestProjectPage());
+            },
+            child: Text(
+              'إقتراح مشروع',
+              style: robotoMediumWhite,
+            ),
+          ),
+          SizedBox(width: 10),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
